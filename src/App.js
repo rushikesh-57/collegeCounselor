@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import {CssBaseline, ThemeProvider, createTheme} from '@mui/material';
+import ResponsiveAppBar from './AppBar';
+import StudentForm from './StudentForm';
+import AppTheme from './shared-theme/AppTheme';
+import ResultGrid from './resultGrid';
+const App = () => {
+  // Manage theme state
+  const [darkMode, setDarkMode] = useState(true);
 
-function App() {
+  // Create theme based on current mode
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? 'dark' : 'light',
+    },
+  });
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <ThemeProvider theme={theme}>
+    <AppTheme>
+      <CssBaseline />
+      <ResponsiveAppBar/>
+      {/* <StudentForm/> */}
+      {/* <ResultGrid/> */}
+    </AppTheme>
+    // </ThemeProvider>
   );
-}
+};
 
 export default App;

@@ -68,3 +68,24 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+########### Demo Prep #############
+
+University - 14
+College - 349
+Branches - 98
+Caste - 7
+
+
+################## To Do List #####################
+
+1. Filter table columns as per Home and Other University
+2. Get Max number from each row and extend to "Cutoff" Column
+3. Sort Table as per Cutoff column
+4. Get 30 rows before cutoff from Rank and after
+5. Color code the rows
+6. Add "Preffered College" dropdown in Form
+7. Filter "Preffered College" and "Preffered Branch" as per selected University
+8. Predict Rank using Percentage/Percentile
+
