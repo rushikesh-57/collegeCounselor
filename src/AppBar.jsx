@@ -17,6 +17,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import StudentForm from './StudentForm';
 import CollegeData from './CollegeData';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { defaultFormData } from './Constants';
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -25,9 +26,11 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const [data, setData] = React.useState([]);
+  const [formData, setFormData] = React.useState(defaultFormData);
 
-  const updateData = (data) => {
+  const updateData = (data, formData) => {
     setData(data);
+    setFormData(formData);
   };
 
   const handleOpenNavMenu = (event) => {
@@ -140,7 +143,7 @@ function ResponsiveAppBar() {
 
     {/* Define Routes for different pages */}
       <Routes>
-        <Route path="/" element={<><StudentForm updateData={updateData}/> <ResultGrid data={data}/></>} />
+        <Route path="/" element={<><StudentForm updateData={updateData}/> <ResultGrid data={data} formData={formData}/></>} />
         <Route path="/about" element={<ResultGrid />} />
         <Route path="/collegeList" element={<CollegeData />} />
       </Routes>

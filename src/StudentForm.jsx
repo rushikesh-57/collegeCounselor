@@ -54,7 +54,7 @@ const StudentForm = ({updateData}) => {
       try {
         const response = await axios.post('http://127.0.0.1:5000/api/formSubmit', formData);
         console.log('Response from backend:', response.data);
-        updateData(response.data);
+        updateData(response.data, formData);
       } catch (error) {
         console.error('There was an error submitting the form:', error);
       }     

@@ -16,7 +16,7 @@ ModuleRegistry.registerModules([
   SetFilterModule,
 ]);
 
-const ResultGrid = ({data}) =>{
+const ResultGrid = ({data, formData}) =>{
 
     const [rowData, setRowData] = useState([]);
     const [columnDefs, setColumnDefs] = useState([]);
@@ -59,10 +59,11 @@ const ResultGrid = ({data}) =>{
 
     const getRowStyle = (params) => {
       return {
-        backgroundColor: params.data.CutOff < data.Rank ? 'green' : 'red',
+        backgroundColor: params.data.CutOff < formData.Rank ? 'red' : 'green',
         color: 'white',  // Optional: to make text readable
       };
     };
+
       useEffect(() =>{
         if (data.length > 0) {
           const columns = Object.keys(data[0]).map(key => ({
@@ -87,7 +88,7 @@ const ResultGrid = ({data}) =>{
              defaultColDef={defaultColDef}
             //  sideBar={"filters"}
             //  onGridReady={onGridReady}
-            //  getRowStyle={getRowStyle}
+             getRowStyle={getRowStyle}
              pagination={true}
              paginationPageSize={20}
          />

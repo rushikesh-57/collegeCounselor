@@ -90,7 +90,7 @@ def filterOtherColumns(data):
 # def addColumn
 
 def collegeSuggest(data):
-    path = 'C:/Users/Santo/Downloads/compiled_colleges_data.xlsx'
+    path = 'C:/Work/collegeCounselor/src/Cap 1 cutoff 24-25.xlsx'
     df = pd.read_excel(path)
     allCols = list(df.columns)
     filtered_df_University_Branch = filterAsPerPreference(df, data)
