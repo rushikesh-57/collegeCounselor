@@ -2,9 +2,11 @@ from flask import Flask,request, jsonify
 import pandas as pd
 from flask_cors import CORS
 import json
-from collegeFilter import collegeSuggest, getDataFromExcel, extract_before_newline, filterAsPerPreference
+from collegeFilter import collegeSuggest, getDataFromExcel, extract_before_newline, filterAsPerPreference, collegeSuggestNew
+import sqlite3
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+# CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+CORS(app)
 
 # Endpoint to fetch data from Excel
 @app.route('/api/get-data', methods=['GET'])
@@ -23,8 +25,13 @@ def get_data():
 
 @app.route('/api/getCollegeData', methods=['GET'])
 def collegeData():
-    df = pd.read_excel('C:/Work/collegeCounselor/src/collegeData.xlsx')
+    # df = pd.read_excel('C:/Work/collegeCounselor/src/collegeData.xlsx')
+    # data = df.to_dict(orient='records')
+    conn = sqlite3.connect("data.db")
+    college_list_query = "SELECT `College Name`, `Branch Name` FROM Cap1_cutoff_2024_Rank;"
+    df = pd.read_sql(college_list_query, conn)
     data = df.to_dict(orient='records')
+    conn.close()
     # Convert the DataFrame to a list of dicts
     return json.dumps(data)
 
@@ -43,11 +50,14 @@ def collegeListPerUni():
 def submit():
     data = request.get_json()  # Read JSON data from the request
     # print('Received data:', data)
-    df = collegeSuggest(data)
+    # df = collegeSuggest(data)
+    df = collegeSuggestNew(data)
     # df_filtered = df.applymap(extract_before_newline)
     # df_filtered = df_filtered.fillna('0')
+    df.fillna(0, inplace=True)
     dataDf = df.to_dict(orient='records')
     # For now, just return the data back as a response
     return json.dumps(dataDf)
+
 if __name__ == '__main__':
     app.run(debug=True)

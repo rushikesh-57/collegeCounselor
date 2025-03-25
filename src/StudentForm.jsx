@@ -1,10 +1,17 @@
 import { useTheme } from '@emotion/react';
-import { Container, CssBaseline, AppBar, Toolbar, Typography, Box, MenuItem, FormControl, InputLabel, ThemeProvider, createTheme, Button, Select, Stack, TextField, Chip, OutlinedInput, Checkbox, ListItemText } from '@mui/material';
+import { Container, CssBaseline, AppBar, Toolbar, Typography, Box, MenuItem, FormControl, InputLabel, ThemeProvider, createTheme, Button, Select, Stack, TextField, Chip, OutlinedInput, Checkbox, ListItemText, CircularProgress, Backdrop } from '@mui/material';
 import React, { useState } from 'react';
 import { defaultFormData, universityList, branchList } from './Constants';
 import axios from 'axios';
 const StudentForm = ({updateData}) => {
     const theme = useTheme();
+    const [open, setOpen] = React.useState(false);
+    const handleClose = () => {
+      setOpen(false);
+    };
+    const handleOpen = () => {
+      setOpen(true);
+    };
     const [formData, setFormData] = useState(defaultFormData);
     const [branchData, setBranchData] = useState(branchList.sort());
     const ITEM_HEIGHT = 48;
@@ -50,12 +57,15 @@ const StudentForm = ({updateData}) => {
     };
 
     const handleSubmit = async (e) => {
+      handleOpen()
       e.preventDefault();
       try {
         const response = await axios.post('http://127.0.0.1:5000/api/formSubmit', formData);
         console.log('Response from backend:', response.data);
+        handleClose();
         updateData(response.data, formData);
       } catch (error) {
+        handleClose();
         console.error('There was an error submitting the form:', error);
       }     
     };
@@ -66,6 +76,13 @@ const StudentForm = ({updateData}) => {
     
     return (
         <>
+        <Backdrop
+          sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
+          open={open}
+          onClick={handleClose}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <form>
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} style={{margin:'10px 0', justifyContent:'center'}}>
         <TextField id="outlined-basic" label="Rank" type="number" name="Rank" value={formData.Rank} onChange={handleChange} variant="outlined" size='small' sx={{width:'150px'}} required/>

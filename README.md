@@ -88,4 +88,6 @@ Caste - 7
 6. Add "Preffered College" dropdown in Form
 7. Filter "Preffered College" and "Preffered Branch" as per selected University
 8. Predict Rank using Percentage/Percentile
+9. Show 5 columns with year wise cutoff and then last one with predicted
+10. New tab with college wise cutoff shown
 
