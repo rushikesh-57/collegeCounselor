@@ -9,7 +9,7 @@ export const defaultFormData = {
     ORPHAN: 'No',
     MI: 'No',
     HomeUniversity: '',
-    PrefferedUniversity: [],
+    PrefferedDistrict: [],
     PrefferedBranch: [],
   }
 
@@ -27,6 +27,43 @@ export const defaultFormData = {
     'Autonomous Institute', "SNDT Women's University",
     'Punyashlok Ahilyadevi Holkar Solapur University', 
     'Gondwana University'
+  ];
+
+  export const districtList = [
+    'Amravati',
+    'Yavatmal',
+    'Buldhana',
+    'Akola',
+    'Washim',
+    'Chhatrapati Sambhajinagar',
+    'Nanded',
+    'Jalna',
+    'Latur',
+    'Osmanabad',
+    'Dharashiv',
+    'Beed',
+    'Parbhani',
+    'Mumbai City',
+    'Mumbai Suburban',
+    'Raigad',
+    'Ratnagiri',
+    'Thane',
+    'Palghar',
+    'Sindhudurg',
+    'Chandrapur',
+    'Nagpur',
+    'Wardha',
+    'Bhandara',
+    'Jalgaon',
+    'Dhule',
+    'Nashik',
+    'Ahmednagar',
+    'Nandurbar',
+    'Pune',
+    'Satara',
+    'Sangli',
+    'Kolhapur',
+    'Solapur',
   ];
 
   export const branchList = ['Computer Science and Technology', 'Food Technology And Management', 'Electrical and Electronics Engineering', 'Bio Technology', 'Artificial Intelligence and Machine Learning', 'Electronics and Communication (Advanced Communication Technology)', 'Data Science', 'Mechanical Engineering', 'Data Engineering', 'Printing and Packing Technology', 'Paints Technology', 'Automobile Engineering', 'Computer Science and Engineering(Cyber Security)', 'Textile Technology', 'Computer Science and Design', 'Pharmaceuticals Chemistry and Technology', 'Manufacturing Science and Engineering', 'Chemical Engineering', 'Computer Technology', 'Agricultural Engineering', 'Robotics and Artificial Intelligence', '5G', 'Information Technology', 'Oil and Paints Technology', 'Civil Engineering and Planning', 'Fibres and Textile Processing Technology', 'Cyber Security', 'Polymer Engineering and Technology', 'Electronics Engineering', 'Textile Chemistry', 'Mechanical Engineering[Sandwich]', 'Aeronautical Engineering', 'Technical Textiles', 'Artificial Intelligence', 'Mechanical and Mechatronics Engineering (Additive Manufacturing)', 'Civil and infrastructure Engineering', 'Plastic Technology', 'Electrical and Computer Engineering', 'Mechanical & Automation Engineering', 'Bio Medical Engineering', 'Petro Chemical Engineering', 'Safety and Fire Engineering', 'Metallurgy and Material Technology', 'Electrical Engineering', 'Architectural Assistantship', 'Civil Engineering', 'Fire Engineering', 'Paper and Pulp Technology', 'Electronics Engineering ( VLSI Design and Technology)', 'Computer Science and Engineering (Artificial Intelligence and Data Science)', 'Electrical, Electronics and Power', 'Computer Science and Engineering(Data Science)', 'Oil Fats and Waxes Technology', 'Structural Engineering', 'Textile Engineering / Technology', 'Electronics and Communication Engineering', 'Food Engineering and Technology', 'Computer Science and Engineering (Cyber Security)', 'Artificial Intelligence and Data Science',

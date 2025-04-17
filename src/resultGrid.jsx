@@ -59,7 +59,7 @@ const ResultGrid = ({data, formData}) =>{
 
     const getRowStyle = (params) => {
       return {
-        backgroundColor: params.data.CutOff < formData.Rank ? 'red' : 'green',
+        backgroundColor: params.data[2024] < formData.Rank ? 'red' : 'green',
         color: 'white',  // Optional: to make text readable
       };
     };

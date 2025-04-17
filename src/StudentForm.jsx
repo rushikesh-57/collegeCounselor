@@ -1,7 +1,7 @@
 import { useTheme } from '@emotion/react';
 import { Container, CssBaseline, AppBar, Toolbar, Typography, Box, MenuItem, FormControl, InputLabel, ThemeProvider, createTheme, Button, Select, Stack, TextField, Chip, OutlinedInput, Checkbox, ListItemText, CircularProgress, Backdrop } from '@mui/material';
 import React, { useState } from 'react';
-import { defaultFormData, universityList, branchList } from './Constants';
+import { defaultFormData, universityList, branchList, districtList } from './Constants';
 import axios from 'axios';
 const StudentForm = ({updateData}) => {
     const theme = useTheme();
@@ -40,9 +40,9 @@ const StudentForm = ({updateData}) => {
         ...formData,
         [name]: value,
       });
-      if (name === 'PrefferedUniversity'){
+      if (name === 'PrefferedDistrict'){
         axios.post('http://127.0.0.1:5000/api/getCollegeList', {
-            'universityList': value
+            'districtList': value
         })
         .then((response) => {
           const data = response.data;
@@ -84,7 +84,7 @@ const StudentForm = ({updateData}) => {
           <CircularProgress color="inherit" />
         </Backdrop>
         <form>
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} style={{margin:'10px 0', justifyContent:'center'}}>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} style={{margin:'10px 0', justifyContent:'center', display:'flex', alignItems:'center'}}>
         <TextField id="outlined-basic" label="Rank" type="number" name="Rank" value={formData.Rank} onChange={handleChange} variant="outlined" size='small' sx={{width:'150px'}} required/>
         <FormControl sx={{ m: 1, minWidth: 100 }} size='small' required>
           <InputLabel id="Gender-select-label">Gender</InputLabel>
@@ -237,21 +237,21 @@ const StudentForm = ({updateData}) => {
           </Select>
           </FormControl>
           <FormControl sx={{ m: 1, minWidth: 500 }} size='small'>
-            <InputLabel id="Preffered-University-label">Preffered University</InputLabel>
+            <InputLabel id="Preffered-District-label">Preffered District</InputLabel>
             <Select
-              labelId="Preffered-University-label"
-              id="Preffered-University"
+              labelId="Preffered-District-label"
+              id="Preffered-District"
               multiple
-              value={formData.PrefferedUniversity}
+              value={formData.PrefferedDistrict}
               onChange={handleChange}
-              name="PrefferedUniversity"
-              input={<OutlinedInput id="select-multiple-university" label="Preffered University" />}
+              name="PrefferedDistrict"
+              input={<OutlinedInput id="select-multiple-district" label="Preffered District" />}
               renderValue={(selected) => selected.join(', ')}
               MenuProps={MenuProps}
             >
-              {universityList.map((name) => (
+              {districtList.map((name) => (
                 <MenuItem key={name} value={name}>
-                  <Checkbox checked={formData.PrefferedUniversity.indexOf(name) > -1} />
+                  <Checkbox checked={formData.PrefferedDistrict.indexOf(name) > -1} />
                   <ListItemText primary={name} />
                 </MenuItem>
               ))}

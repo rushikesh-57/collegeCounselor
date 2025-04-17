@@ -39,11 +39,17 @@ def collegeData():
 @app.route('/api/getCollegeList', methods=['POST'])
 def collegeListPerUni():
     data = request.get_json()
-    universityList = data['universityList']
-    path = 'C:/Work/collegeCounselor/src/Cap 1 cutoff 24-25.xlsx'  # Specify your Excel file name
-    df = getDataFromExcel(path)
-    filtered_df_University = df[df['Home University'].isin(universityList)]
-    branchList = list(set(filtered_df_University['Branch Name'])).sort()
+    districtList = data['districtList']
+    print(districtList)
+    conn = sqlite3.connect("data.db")
+    sqlQuery = """ SELECT DISTINCT(b.branch_name) from Branch b join College c ON b.college_code = c.college_code WHERE 1 = 1 """
+    if districtList:
+        sqlQuery = sqlQuery + f""" AND c.District IN ({', '.join(f"'{item}'" for item in districtList)}) ;"""
+    print(sqlQuery)
+    df = pd.read_sql(sqlQuery, conn)
+    conn.close()
+    branchList = list(set(df['branch_name'].to_list()))
+    # print(branchList)
     return json.dumps(branchList)
 
 @app.route('/api/formSubmit', methods=['POST'])
